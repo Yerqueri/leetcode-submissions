@@ -9,15 +9,12 @@ class Solution {
                 candies[i] =1;
             }
         }
-        System.out.println(Arrays.toString(candies));
 
         for(int i=ratings.length-2;i>=0;i--){
             if(ratings[i]>ratings[i+1]){
                 candies[i] = Math.max(candies[i],candies[i+1]+1); 
             }
         }
-
-        System.out.println(Arrays.toString(candies));
 
         int count =0;
         for(int i:candies){
