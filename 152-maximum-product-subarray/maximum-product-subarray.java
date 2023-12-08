@@ -8,7 +8,7 @@ class Solution {
             int temp_max = Math.max(val, Math.max( max_pos*val, min_neg*val));
             min_neg = Math.min(val, Math.min( max_pos*val, min_neg*val));
             max_pos = temp_max;
-            System.out.println(max_pos+" "+min_neg);
+            //System.out.println(max_pos+" "+min_neg);
             sol = Math.max(max_pos,sol);
         }
         return sol;
