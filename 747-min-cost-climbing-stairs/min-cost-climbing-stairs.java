@@ -1,18 +1,8 @@
 class Solution {
-    Map<Integer,Integer> map = new HashMap<>();
     public int minCostClimbingStairs(int[] cost) {
-        return Math.min(solve(cost, cost.length-1), solve(cost, cost.length-2));
-    }
-
-    private int solve(int[] cost, int index){
-        if(index==0 || index ==1){
-            return cost[index];
-        }else if(map.containsKey(index)){
-            return map.get(index);
-        }else{
-            int val = cost[index] + Math.min(solve(cost, index-1), solve(cost,index-2));
-            map.put(index,val);
-            return val;
+        for(int i=2;i<cost.length;i++){
+            cost[i]+=Math.min(cost[i-1],cost[i-2]);
         }
+        return Math.min(cost[cost.length-1], cost[cost.length-2]);
     }
 }
