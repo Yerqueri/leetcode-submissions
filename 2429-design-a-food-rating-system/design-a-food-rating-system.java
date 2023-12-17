@@ -8,12 +8,12 @@ class FoodRatings {
             this.rating = rating;
         }
 
-        Rating(){
-        }
+        // Rating(){
+        // }
 
-        public String toString(){
-            return "{"+this.foodItem+" : "+this.rating+"}";
-        }
+        // public String toString(){
+        //     return "{"+this.foodItem+" : "+this.rating+"}";
+        // }
     }
     Map<String,TreeSet<Rating>> cuisineRatingMap; 
 
