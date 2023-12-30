@@ -2,9 +2,10 @@ class Solution {
     public boolean makeEqual(String[] words) {
         int[] arr = new int[26];
         for(String s: words){
-            s.chars().forEach(el->{
-                arr[el-97]++;
-            }); 
+            char[] carr = s.toCharArray();
+            for(int i=0;i<carr.length;i++){
+                arr[(int)carr[i]-(int)'a']++;
+            }
         }
         int n = words.length;
         for(int i=0;i<26;i++){
