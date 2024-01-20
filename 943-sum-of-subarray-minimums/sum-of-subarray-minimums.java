@@ -5,6 +5,7 @@ class Solution {
 
         Stack<Integer> stack = new Stack<>();
         long sumOfMinimums = 0;
+        stack.push(-1);
 
         // building monotonically increasing stack
         for (int i = 0; i <= arr.length; i++) {
@@ -13,7 +14,7 @@ class Solution {
             // all the elements have been processed, and the remaining
             // elements in the stack should now be popped out.
 
-            while (!stack.empty() && (i == arr.length || arr[stack.peek()] >= arr[i])) {
+            while (stack.peek()!=-1 && (i == arr.length || arr[stack.peek()] >= arr[i])) {
 
                 // Notice the sign ">=", This ensures that no contribution
                 // is counted twice. rightBoundary takes equal or smaller 
@@ -21,7 +22,7 @@ class Solution {
                 // strictly smaller elements into account
 
                 int mid = stack.pop();
-                int leftBoundary = stack.empty() ? -1 : stack.peek();
+                int leftBoundary = stack.peek();
                 int rightBoundary = i;
 
                 // count of subarrays where mid is the minimum element
