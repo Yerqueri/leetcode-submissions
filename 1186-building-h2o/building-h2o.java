@@ -1,28 +1,31 @@
 class H2O {
-    
-    private final Semaphore hydrogenSemaphore;
-    private final Semaphore oxygenSemaphore;
+    private int hydrogenCount = 0;
+    private final Object lock = new Object();
 
     public H2O() {
-        hydrogenSemaphore = new Semaphore(2);
-        oxygenSemaphore = new Semaphore(0); 
     }
 
     public void hydrogen(Runnable releaseHydrogen) throws InterruptedException {
-        hydrogenSemaphore.acquire();
-
-        // releaseHydrogen.run() outputs "H". Do not change or remove this line.
-        releaseHydrogen.run();
-
-        oxygenSemaphore.release();
+        synchronized(lock) {
+            while (hydrogenCount == 2) { // Wait if two hydrogens are already released
+                lock.wait();
+            }
+            releaseHydrogen.run();
+            hydrogenCount++;
+            if (hydrogenCount == 2) { // If two hydrogens are released, reset for oxygen
+                lock.notifyAll();
+            }
+        }
     }
 
     public void oxygen(Runnable releaseOxygen) throws InterruptedException {
-        oxygenSemaphore.acquire(2);
-
-        // releaseOxygen.run() outputs "O". Do not change or remove this line.
-        releaseOxygen.run();
-
-        hydrogenSemaphore.release(2);
+        synchronized(lock) {
+            while (hydrogenCount != 2) { // Wait for two hydrogens to be released
+                lock.wait();
+            }
+            releaseOxygen.run();
+            hydrogenCount = 0; // Reset hydrogen count after oxygen is released
+            lock.notifyAll(); // Notify all waiting threads
+        }
     }
 }
