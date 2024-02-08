@@ -7,7 +7,7 @@ class Solution {
             return map.get(n);
         }
         int min = Integer.MAX_VALUE;
-        for(int i=1;i*i<=n;i++){
+        for(int i=(int)Math.sqrt(n);i>0;i--){
             if(n-(i*i)>=0){
                 min = Math.min(min,numSquares(n-(i*i)));
             }
