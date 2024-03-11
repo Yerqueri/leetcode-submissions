@@ -6,7 +6,10 @@ class Solution {
             int index = (int)order.charAt(i)-(int)'a';
             arr[index]=i;
         }
-        List<Character> list = s.chars().mapToObj(c -> (char) c).collect(Collectors.toList());
+        List<Character> list = new ArrayList<>();
+        for(int i=0;i<s.length();i++){
+            list.add(s.charAt(i));
+        }
         list.sort((a,b)->Integer.compare(arr[(int)a-(int)'a'],arr[(int)b-(int)'a']));
         StringBuilder sb = new StringBuilder();
         for(Character c: list){
