@@ -3,7 +3,6 @@ class Solution {
         for(int i=0;i<board.length;i++){
             for(int j=0;j<board[0].length;j++){
                 boolean[][] visited = new boolean[board.length][board[0].length];
-                //System.out.println(i+" "+j);
                 if(dfs(word,visited,board,i,j,0)){
                     return true;
                 }
@@ -16,10 +15,6 @@ class Solution {
         if(visited[i][j] || board[i][j]!=word.charAt(k)){
             return false;
         }else if(k==word.length()-1){
-            // System.out.println(i+" "+j+" "+k);
-            // for(int l=0;l<visited.length;l++){
-            //     System.out.println(Arrays.toString(visited[l]));
-            // }
             return word.charAt(k)==board[i][j];
         }else{
             int[] x = new int[]{0,-1,0,1};
@@ -28,11 +23,7 @@ class Solution {
             for(int p=0;p<x.length;p++){
                 int x1 = i+x[p];
                 int y1 = j+y[p];
-                if(x1>=0 
-                    && x1<board.length
-                    && y1>=0 
-                    && y1<board[0].length
-                    ){
+                if(withinBounds(x1, y1, board.length, board[0].length)){
                     visited[i][j] = true;
                     flag = flag || dfs(word,visited,board,x1,y1,k+1);
                     visited[i][j] = false;
@@ -41,9 +32,8 @@ class Solution {
             return flag;
         }
     }
-}
 
-// 1,2
-// 0,1
-// 1,0
-// 2,1
+    private boolean withinBounds(int i, int j, int i1, int j1){
+        return i>=0 && i<i1 && j>=0 && j<j1;
+    }
+}
