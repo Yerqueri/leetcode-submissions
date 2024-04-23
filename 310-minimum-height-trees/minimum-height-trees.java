@@ -4,22 +4,22 @@ class Solution {
             return List.of(0);
         }
         Map<Integer, Set<Integer>> graph = getGraph(edges);
-        System.out.println("start: " +edges[0][0]);
+        // System.out.println("start: " +edges[0][0]);
         Node extreme1 = getExtremeNode(new Node(edges[0][0], 0), graph);
         resetAllGlobalVariables(extreme1);
-        System.out.println("extreme1: " +extreme1);
+        // System.out.println("extreme1: " +extreme1);
         Node extreme2 = getExtremeNode(extreme1, graph);
-        System.out.println("extreme2: " +extreme2);
+        // System.out.println("extreme2: " +extreme2);
         Set<Integer> mids1 = getMidKeys(getMids(extreme2));
         resetAllGlobalVariables(extreme2);
         Node extreme3 = getExtremeNode(extreme2, graph);
-        System.out.println("extreme3: " +extreme3);
-        System.out.println("visited: " + visited);
+        // System.out.println("extreme3: " +extreme3);
+        // System.out.println("visited: " + visited);
         Set<Integer> mids2 = getMidKeys(getMids(extreme3));
-        System.out.println("mids1: "+ mids1);
-        System.out.println("mids2: "+ mids2);
+        // System.out.println("mids1: "+ mids1);
+        // System.out.println("mids2: "+ mids2);
         Set<Integer> mids = consolidateMids(mids1,mids2);
-        System.out.println("mids: "+ mids);
+        // System.out.println("mids: "+ mids);
         return new ArrayList<>(mids);
     }
 
