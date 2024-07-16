@@ -11,7 +11,7 @@ class Solution {
         if(s.equals("")){
             return "1";
         }
-        String sol = "";
+        StringBuilder sol = new StringBuilder();
         for(int i=0;i<s.length();i++){
             int count =0;
             int j =i;
@@ -19,10 +19,11 @@ class Solution {
                 count++;
                 j++;
             }
-            sol+=count+""+s.charAt(i);
+            sol.append(count);
+            sol.append(s.charAt(i));
             i=j;
             i--;
         }
-        return sol;
+        return sol.toString();
     }
 }
