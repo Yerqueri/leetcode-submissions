@@ -4,7 +4,7 @@ class Solution {
         for(int i=0;i<heights.length;i++){
             arr[i] = new int[]{heights[i],i};
         }
-        Arrays.sort(arr, (a,b)->Integer.compare(b[0],a[0]));
+        Arrays.parallelSort(arr, (a,b)->Integer.compare(b[0],a[0]));
         String[] sol = new String[names.length];
         for(int i=0;i<names.length;i++){
             sol[i]=names[arr[i][1]];
