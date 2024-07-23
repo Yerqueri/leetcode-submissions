@@ -5,12 +5,21 @@ class Solution {
             int f = map.getOrDefault(i,0);
             map.put(i,f+1);
         }
-        return Arrays.stream(nums).boxed().sorted((a,b)->{
-            if(map.get(a).equals(map.get(b))){
-                return Integer.compare(b,a);
+        List<Map.Entry<Integer,Integer>> l = new ArrayList<>(map.entrySet());
+        l.sort((a,b)->{
+            if(Integer.compare(a.getValue(),b.getValue())==0){
+                return Integer.compare(b.getKey(),a.getKey());
             }else{
-                return Integer.compare(map.get(a),map.get(b));
+                return Integer.compare(a.getValue(),b.getValue());
             }
-        }).mapToInt(i->i).toArray();
+        });
+        int j =0;
+        for(int i=0;i<l.size();i++){
+            for(int k=0;k<l.get(i).getValue();k++){
+                nums[j]=l.get(i).getKey();
+                j++;
+            }
+        }
+        return nums;
     }
 }
