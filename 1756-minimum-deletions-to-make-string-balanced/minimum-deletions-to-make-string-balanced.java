@@ -5,7 +5,7 @@ class Solution {
         for(char c: s.toCharArray()){
             if(c=='b'){
                 bcount++;
-            }else if(c=='a' && bcount>0){
+            }else if(bcount>0){
                 bcount--;
                 count++;
             }
