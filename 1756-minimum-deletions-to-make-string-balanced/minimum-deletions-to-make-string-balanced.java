@@ -6,8 +6,8 @@ class Solution {
             if(c=='b'){
                 bcount++;
             }else if(bcount>0){
-                bcount--;
                 count++;
+                bcount--;
             }
         }
         return count;
