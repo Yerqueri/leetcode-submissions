@@ -5,11 +5,9 @@ class Solution {
         for(int i=0;i<s.length();i++){
             if(s.charAt(i)=='b'){
                 bcount++;
-            }else if(s.charAt(i)=='a'){
-                if(bcount>0){
-                    bcount--;
-                    count++;
-                }
+            }else if(s.charAt(i)=='a' && bcount>0){
+                bcount--;
+                count++;
             }
         }
         return count;
