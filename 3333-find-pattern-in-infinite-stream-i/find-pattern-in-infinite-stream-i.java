@@ -6,22 +6,27 @@
  * }
  */
 class Solution {
-
-    public int findPattern(InfiniteStream infiniteStream, int[] pattern) {
-        StringBuilder str = new StringBuilder();
-        for(int i: pattern){
-            str.append(i);
+    public int findPattern(InfiniteStream stream, int[] pattern) {
+        long p = 0;
+        for(int i:pattern){
+            p = p<<1;
+            p+=i;
         }
-        StringBuilder curr = new StringBuilder();
-        String hash = str.toString();
+        int n = pattern.length;
+        long s = 0;
+        long mask = 0;
+        for(int i=0;i<n;i++){
+            s=s<<1;
+            s+=stream.next();
+            mask = mask<<1;
+            mask = mask | 1;
+        }
         int index =0;
-        while(curr.length()!=hash.length()){
-            curr.append(infiniteStream.next());
-        }
-        while(!curr.toString().equals(hash)){
+        while(s!=p){
+            s = s<<1;
+            s = s & mask;
+            s += stream.next();
             index++;
-            curr.deleteCharAt(0);
-            curr.append(infiniteStream.next());
         }
         return index;
     }
