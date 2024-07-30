@@ -10,14 +10,14 @@ class Solution {
         long p = 0;
         for(int i:pattern){
             p = p<<1;
-            p+=i;
+            p = p | i;
         }
         int n = pattern.length;
         long s = 0;
         long mask = 0;
         for(int i=0;i<n;i++){
             s=s<<1;
-            s+=stream.next();
+            s = s | stream.next();
             mask = mask<<1;
             mask = mask | 1;
         }
@@ -25,7 +25,7 @@ class Solution {
         while(s!=p){
             s = s<<1;
             s = s & mask;
-            s += stream.next();
+            s = s | stream.next();
             index++;
         }
         return index;
