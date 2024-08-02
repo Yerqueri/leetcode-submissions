@@ -1,29 +1,25 @@
 class Solution {
     public int minSwaps(int[] nums) {
         int count =0;
-        for(int i=0;i<nums.length;i++){
+        int n = nums.length;
+        for(int i=0;i<n;i++){
             count+=nums[i];
         }
-        int[] nums2 = new int[nums.length+count];
-        for(int i=0;i<nums.length;i++){
-            nums2[i] = nums[i];
-        }
-        for(int i=nums.length;i<nums2.length;i++){
-            nums2[i] = nums[i-nums.length];
-        }
-        System.out.println(Arrays.toString(nums2));
-        return findMin(nums2, count);
-    }
 
-    private int findMin(int[] data, int count) {
-        int curr =0;
-        for(int i=0;i<count;i++){
-            curr+=data[i];
-        }
-        int min = count -curr;
-        for(int i=count;i<data.length;i++){
-            curr = curr - data[i-count] + data[i];
-            min = Math.min(count-curr, min);
+        int curr = 0;
+
+        int min = count;
+
+        for(int i=0;i<n+count+1;i++){
+            if(i<count){
+                curr+=nums[i];
+            }else{
+                min = Math.min(count-curr, min);
+                if(i<n+count){
+                    curr -= nums[i-count];
+                    curr += nums[i%n];
+                }
+            }
         }
         return min;
     }
