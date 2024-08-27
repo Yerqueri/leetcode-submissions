@@ -3,18 +3,18 @@ class Solution {
         if(nums.length==0){
             return 0;
         }
-        int count =1;
-        int max = 1;
-        Arrays.sort(nums);
-        for(int i=1;i<nums.length;i++){
-            if(nums[i]==nums[i-1]+1){
-                count++;
-            }else if(nums[i]==nums[i-1]){
-                continue;
-            }else{
-                count =1;
+        Set<Integer> set = Arrays.stream(nums).boxed().collect(Collectors.toSet());
+        int max =1;
+        for(int i=0;i<nums.length;i++){
+            int curr = nums[i];
+            if(!set.contains(curr-1)){
+                int streak =1;
+                while(set.contains(curr+1)){
+                    streak++;
+                    curr++;
+                }
+                max = Math.max(max,streak);
             }
-            max = Math.max(max,count);
         }
         return max;
     }
