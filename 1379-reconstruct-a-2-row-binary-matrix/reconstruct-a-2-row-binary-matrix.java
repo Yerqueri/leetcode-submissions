@@ -6,16 +6,11 @@ class Solution {
         upper = remaining[0];
         lower = remaining[1];
         int count = remaining[2];
-        System.out.println(l1+" "+upper);
-        System.out.println(l2+" "+lower);
-        System.out.println(count);
         if(count != lower+upper || lower<0 || upper<0){
             return new ArrayList<>();
         }else{
             construct2(l1,l2,upper);
         }
-        System.out.println(l1);
-        System.out.println(l2);
         return List.of(l1,l2);
     }
 
