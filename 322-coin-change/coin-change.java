@@ -5,7 +5,7 @@ class Solution {
         }
         int[] arr = new int[amount+1];
         Arrays.fill(arr, 1_000_00);
-        Arrays.sort(coins);
+        //Arrays.sort(coins);
         for(int i=1;i<=amount;i++){
             for(int j =0 ;j<coins.length;j++){
                 if(i==coins[j]){
